@@ -17,7 +17,7 @@ import java.util.List;
  * 核心：简单的链表操作，快速
  * @date 2019/8/21
  **/
-public class addTwoNumbers {
+public class AddTwoNumbers {
 
     public static void main(String[] args) {
         ListNode l1 = createListNodeByNums(5);

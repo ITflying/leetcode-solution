@@ -18,7 +18,7 @@ import java.util.Set;
  *
  * @date 2019/8/28 10:07
  **/
-public class lengthOfLongestSubstrings {
+public class LengthOfLongestSubstrings {
 
     public static void main(String[] args) {
         String testStr = "abcaca";

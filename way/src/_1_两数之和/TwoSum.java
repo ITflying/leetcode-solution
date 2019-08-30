@@ -14,7 +14,7 @@ import java.util.HashMap;
  * 核心：占位寻找另一个值
  * @date 2019/8/21
  **/
-public class twoSum {
+public class TwoSum {
     public static void main(String[] args) {
         int[] nums = new int[]{-1, -2, -3, -4, -5};
         int target = 0;
