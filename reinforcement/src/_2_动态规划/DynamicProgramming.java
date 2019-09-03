@@ -3,7 +3,8 @@ package _2_动态规划;
 import java.util.HashMap;
 
 /**
- * 
+ * 自底而上，往往采用最底下的边界条件循环往上计算
+ * 自顶而下，往往采用递归的方式往下计算
  * @date 2019/8/30  
  **/
 public class DynamicProgramming {

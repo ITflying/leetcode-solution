@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * 则中位数是 2.0
  *
  * 核心：
- * @date 2019/8/28 11:34
+ * @date 2019/8/28  
  **/
 public class FindMedianSortedArray {
 
