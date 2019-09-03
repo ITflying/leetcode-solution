@@ -50,6 +50,7 @@ public class reverseNum {
 
     /**
      * 官方解法：弹出和推入数字 & 溢出前进行检查
+     * 耗时2ms，时间复杂度为O(n)
      */
     public static int reverseNum_02(int x) {
         int rev = 0;
