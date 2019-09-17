@@ -1,4 +1,4 @@
-package _15_三数之和;
+package _1_to_16._15_三数之和;
 
 import java.util.*;
 
@@ -57,6 +57,7 @@ public class SumOfThreeNum {
 
     /**
      * 第二种方法：左右坐标法
+     * 模拟上一道题的左右指针法，而且只需要找到接近的，相对简单点
      */
     private static List<List<Integer>> threeSum_02(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();

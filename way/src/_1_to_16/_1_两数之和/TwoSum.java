@@ -1,4 +1,4 @@
-package _1_两数之和;
+package _1_to_16._1_两数之和;
 
 import java.util.HashMap;
 
