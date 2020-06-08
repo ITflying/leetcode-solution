@@ -30,7 +30,7 @@ public class LengthOfLongestSubstrings {
      * 因为遇到重复的就会到重复的下一元素开始遍历重复判断是否重复，时间复杂度应该为o(2n)或o(n)
      * 看了题解后发现这就是滑动窗口的思路，只是处理窗口位置太粗糙了
      */
-    public static int lengthOfLongestSubstring_01(String s) {
+    private static int lengthOfLongestSubstring_01(String s) {
         int maxLen = 0;
         HashMap<Character, Integer> pos = new HashMap<>();
         Set<Character> characterSet = new HashSet<>();
@@ -59,7 +59,7 @@ public class LengthOfLongestSubstrings {
      * 第二种方法：纯粹的暴力解法，划分出n个区域，然后看n个区域是否重复，重复判断，时间复杂度为o(n^3)
      * 会超出时间限制
      */
-    public static int lengthOfLongestSubstring_02(String s) {
+    private static int lengthOfLongestSubstring_02(String s) {
         int len = s.length(), maxLen = 0;
         Set<Character> characterSet = null;
 
@@ -87,7 +87,7 @@ public class LengthOfLongestSubstrings {
     /**
      * 第三种方法：滑动窗口方式，这其实是第一种方法的优化方式，更灵巧的处理了起始于结尾位置，时间复杂度也为o(n)
      */
-    public static int lengthOfLongestSubstring_03(String s) {
+    private static int lengthOfLongestSubstring_03(String s) {
         int len = s.length();
         Set<Character> characterSet = new HashSet<>();
         int max = 0, i = 0, j = 0;
@@ -107,7 +107,7 @@ public class LengthOfLongestSubstrings {
      * 起始就是跳过已经计算过的数据，直接在重复后面进行继续计算。
      * 比如abcaca,第一次a重复，i变为1，第二层c重复，i变为3，直接越过了2的b开始重新计算最长无重复字串
      */
-    public static int lengthOfLongestSubstring_04(String s) {
+    private static int lengthOfLongestSubstring_04(String s) {
         int len = s.length();
         Map<Character, Integer> map = new HashMap<>();
         int max = 0;
@@ -126,7 +126,7 @@ public class LengthOfLongestSubstrings {
      * 第五种方法：
      * 默认创建128个空间的数据，然后不断循环获取每个无重复子串的长度,空间换时间，9ms
      */
-    public static int lengthOfLongestSubstring_05(String s) {
+    private static int lengthOfLongestSubstring_05(String s) {
         int len = s.length();
         int[] index = new int[128];
         int max = 0;
@@ -141,7 +141,7 @@ public class LengthOfLongestSubstrings {
     /**
      * 第六种方法：循环对前面的子串进行判断
      */
-    public static int lengthOfLongestSubstring_06(String s) {
+    private static int lengthOfLongestSubstring_06(String s) {
         char[] chars = s.toCharArray();
         if (chars.length == 0) {
             return 0;

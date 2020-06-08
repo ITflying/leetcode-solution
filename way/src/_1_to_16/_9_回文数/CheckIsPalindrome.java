@@ -30,7 +30,7 @@ public class CheckIsPalindrome {
      * 第一种方法：暴力破解，转化为字符串再循环遍历首尾是否相同
      * 传统艺能不能丢
      */
-    public static boolean isPalindrome_01(int x) {
+    private static boolean isPalindrome_01(int x) {
         if (x < 0) {
             return false;
         }
@@ -50,7 +50,7 @@ public class CheckIsPalindrome {
      * 耗时46ms，比上一种更慢
      * 得保证不越界
      */
-    public static boolean isPalindrome_02(int x) {
+    private static boolean isPalindrome_02(int x) {
         if (x < 0) {
             return false;
         }
@@ -82,7 +82,7 @@ public class CheckIsPalindrome {
      * 空间复杂度为O(1)
      * 这里巧妙地利用了一半数字进行对比，核心在于如果数字大于构建的数字时就代表已经过去了一半数字，同时要考虑奇偶的情况
      */
-    public static boolean isPalindrome_03(int x) {
+    private static boolean isPalindrome_03(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
         }

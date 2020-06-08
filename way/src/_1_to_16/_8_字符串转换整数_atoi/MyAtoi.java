@@ -57,7 +57,7 @@ public class MyAtoi {
      * 跟裁缝一样，+1 -1 3.14  解决各种问题，感觉代码很冗余
      * 然后耗时10ms，时间复杂度为O（n）
      */
-    public static int createMyAtoi_01(String str) {
+    private static int createMyAtoi_01(String str) {
         int ret = 0;
 
         if (str != null && str.trim().length() > 0 && !"-".equals(str.trim())) {
@@ -105,7 +105,7 @@ public class MyAtoi {
 
     // region 抄作业时间 最快的1ms
 
-    public static int createMyAtoi_02(String str) {
+    private static int createMyAtoi_02(String str) {
         String trimStr = str.trim();
         if (trimStr.length() == 0) {
             return 0;

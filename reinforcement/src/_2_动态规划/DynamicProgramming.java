@@ -9,10 +9,11 @@ import java.util.HashMap;
  **/
 public class DynamicProgramming {
     public static void main(String args[]) {
-        testGold();
+        // testClimbStairs(); // 爬楼梯
+         testGold();
     }
     
-    public static void testClimbStairs(){
+    private static void testClimbStairs(){
         for (int i = 0; i < 10;i++) {
             int res = climbStairs(i);
             System.out.print(res+"\t");
@@ -41,7 +42,7 @@ public class DynamicProgramming {
      * 2、公式就变成了f(n) = f(n-1)+f(n-2) f就是计算到达那个台阶有多少种方法的函数
      * 3、一直延续下去就可以延续到 f(1),f(2)，而f(1)=1，f(2)=2，就可以返回到上一层进行计算了
      */
-    public static int climbStairs(int n) {
+    private static int climbStairs(int n) {
         if (n < 1) return 0;
         if (n == 1) return 1;
         if (n == 2) return 2;
@@ -53,7 +54,7 @@ public class DynamicProgramming {
     /**
      * 备忘录算法，遇到重复计算的数值就保存起来，然后等到用的时候就可以拿出来用了
      */
-    public static int climbStairsOfNote(int n, HashMap<Integer, Integer> note){
+    private static int climbStairsOfNote(int n, HashMap<Integer, Integer> note){
         if (n < 1) return 0;
         if (n == 1) return 1;
         if (n == 2) return 2;
@@ -69,7 +70,7 @@ public class DynamicProgramming {
     /**
      * 自底而上的算法，引入两个变量从底往上进行计算
      */
-    public static int climbStairsByBottom(int n){
+    private static int climbStairsByBottom(int n){
         if (n < 1) return 0;
         if (n == 1) return 1;
         if (n == 2) return 2;
@@ -99,7 +100,7 @@ public class DynamicProgramming {
      * 4	300	4
      * 5	350	3
      */
-    public static void testGold(){
+    private static void testGold(){
         int n = 5;
         int w = 10;
         int[] g = new int[]{400,500,200,300,35};
@@ -118,7 +119,7 @@ public class DynamicProgramming {
     /**
      * 首先是递归，时间复杂度为O(n*w)
      */
-    public static int getMaxGold(int n,int w,int[] g, int[] p){
+    private static int getMaxGold(int n,int w,int[] g, int[] p){
         if (n <= 1 && w <p[0]){
             return 0;
         }
@@ -138,7 +139,7 @@ public class DynamicProgramming {
     /**
      * 备忘录模式
      */
-    public static int getMaxGoldOfNote(int n, int w, int[] g, int[] p, HashMap<String, Integer> note) {
+    private static int getMaxGoldOfNote(int n, int w, int[] g, int[] p, HashMap<String, Integer> note) {
         if (n <= 1 && w < p[0]) {
             return 0;
         }
@@ -171,7 +172,7 @@ public class DynamicProgramming {
     /**
      * 自底而上的算法
      */
-    public static int getMaxGoldByBottom(int n,int w,int[] g, int[] p){
+    private static int getMaxGoldByBottom(int n,int w,int[] g, int[] p){
         int col = w + 1;
         int[] preRes = new int[col];
         int[] result = new int[col];

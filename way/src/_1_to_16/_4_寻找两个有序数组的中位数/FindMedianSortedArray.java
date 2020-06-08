@@ -28,7 +28,7 @@ public class FindMedianSortedArray {
     /**
      * 最简单的方法：把两个合并起来然后取中位数，但是时间和复杂度其实是O(n)吧，然后时间花费了54ms
      */
-    public static double findMedianSortedArrays_01(int[] nums1, int[] nums2) {
+    private static double findMedianSortedArrays_01(int[] nums1, int[] nums2) {
         List<Integer> list1 = Arrays.stream( nums1 ).boxed().collect(Collectors.toList());
         List<Integer> list2 = Arrays.stream( nums2 ).boxed().collect(Collectors.toList());
         list1.addAll(list2);
@@ -47,7 +47,7 @@ public class FindMedianSortedArray {
      * 第二种方式：循环构造，到一半就结束 o((m+n)/2)，6ms，o(￣▽￣)ｄ，直线思维，复杂度达不到要求，但还是通过了
      * 这其实有点像归并排序的合并部分
      */
-    public static double findMedianSortedArrays_02(int[] nums1, int[] nums2) {
+    private static double findMedianSortedArrays_02(int[] nums1, int[] nums2) {
         int sumLen = nums1.length + nums2.length;
         int num = 0;
         int left = 0, right = 0;
@@ -77,7 +77,7 @@ public class FindMedianSortedArray {
      *           就跟解数学题目一样，读题列公式考虑边界情况，解答。
      * 脑子说你看懂了，敲代码的时候手说不你没懂
      */
-    public static double findMedianSortedArrays_03(int[] nums1, int[] nums2) {
+    private static double findMedianSortedArrays_03(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
         // 1. 保证num1的长度小于等于nums2
@@ -141,7 +141,7 @@ public class FindMedianSortedArray {
      * 如果k!=1，则不可以进行对比
      * 这个想法很巧妙的是不断把小的数组切割掉
      */
-    public static double findMedianSortedArrays_04(int[] nums1, int[] nums2) {
+    private static double findMedianSortedArrays_04(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
 

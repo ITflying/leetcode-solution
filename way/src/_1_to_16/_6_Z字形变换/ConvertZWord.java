@@ -46,7 +46,7 @@ public class ConvertZWord {
      * 第一种方法：直接把它扔进n维数组当中，耗时92 ms
      * 学好暴力破解，走遍天下都不怕
      */
-    public static String ConvertZWord_01(String s, int numRows) {
+    private static String ConvertZWord_01(String s, int numRows) {
         if (numRows == 1) {
             return s;
         }
@@ -85,7 +85,7 @@ public class ConvertZWord {
      * 第二种方法：官方按行排序塞入创建好的list当中
      * 只有一层循环，复杂度自然为O（n），耗时为25ms
      */
-    public static String ConvertZWord_02(String s, int numRows) {
+    private static String ConvertZWord_02(String s, int numRows) {
         if (numRows == 1) {
             return s;
         }
@@ -119,7 +119,7 @@ public class ConvertZWord {
     /**
      * 第三种方法：按行Z形读取字符串返回对应的字符串
      */
-    public static String ConvertZWord_03(String s, int numRows) {
+    private static String ConvertZWord_03(String s, int numRows) {
         if (numRows == 1) {
             return s;
         }

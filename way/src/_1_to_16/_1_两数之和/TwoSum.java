@@ -28,7 +28,7 @@ public class TwoSum {
     /**
      * 第一种自然就是暴力循环，时间复杂度为O（n^2）
      */
-    public static int[] twoSum_1(int[] nums, int target) {
+    private static int[] twoSum_1(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
@@ -42,7 +42,7 @@ public class TwoSum {
     /**
      * 第二种可以用占位的方式，比如hashmap，空间换时间
      */
-    public static int[] twoSum_2(int[] nums, int target) {
+    private static int[] twoSum_2(int[] nums, int target) {
         HashMap<Integer, Integer> num2pos = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             Integer targetNum = num2pos.get(target - nums[i]);
@@ -60,7 +60,7 @@ public class TwoSum {
      * 也是类似于占位的方法，首先划分一个区域，然后按位存放数据，如果那个位置有对应数据就代表有数据在
      * 2047的选择是有讲究的，原码和补码全都是1；将两个判断变成一个判断，而且按位与直接锁定对应位置。
      */
-    public static int[] fastest_twoSum(int[] nums, int target) {
+    private static int[] fastest_twoSum(int[] nums, int target) {
         int max = 2047;
         int[] temp = new int[max + 1];
         int diffPos;

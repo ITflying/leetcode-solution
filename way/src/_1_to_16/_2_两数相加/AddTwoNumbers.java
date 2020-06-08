@@ -35,7 +35,7 @@ public class AddTwoNumbers {
      * 第一种：遍历转换为数字列表然后循环进位相加， 速度巨慢，15ms
      * 时间复杂度应该为O（3n）
      */
-    public static ListNode addTwoNumbers_1(ListNode l1, ListNode l2) {
+    private static ListNode addTwoNumbers_1(ListNode l1, ListNode l2) {
         List<Integer> num1 = getNumByListNode(l1);
         List<Integer> num2 = getNumByListNode(l2);
 
@@ -65,7 +65,7 @@ public class AddTwoNumbers {
         return res;
     }
 
-    public static List<Integer> getNumByListNode(ListNode node) {
+    private static List<Integer> getNumByListNode(ListNode node) {
         List<Integer> numList = new ArrayList<>();
 
         ListNode temp = node;
@@ -81,7 +81,7 @@ public class AddTwoNumbers {
      * 第二种：直接在链表上面进行操作，6ms
      * 时间复杂度应该是O（max(m,n)）
      */
-    public static ListNode addTwoNumbers_2(ListNode l1, ListNode l2) {
+    private static ListNode addTwoNumbers_2(ListNode l1, ListNode l2) {
         ListNode res = null, temp = null;
         int addNext = 0;
         while (l1 != null || l2 != null) {
@@ -104,7 +104,7 @@ public class AddTwoNumbers {
         return res;
     }
 
-    public static int null2zero(ListNode node) {
+    private static int null2zero(ListNode node) {
         if (node == null) {
             return 0;
         }
@@ -115,7 +115,7 @@ public class AddTwoNumbers {
      * 第三种方法：抄作业时间
      * 就利用原链表来实现
      */
-    public static ListNode addTwoNumbers_3(ListNode l1, ListNode l2) {
+    private static ListNode addTwoNumbers_3(ListNode l1, ListNode l2) {
         ListNode p = l1;
         ListNode q = l2;
         int addNext = 0;

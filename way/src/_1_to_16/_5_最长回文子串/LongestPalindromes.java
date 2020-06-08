@@ -22,7 +22,7 @@ public class LongestPalindromes {
      * 第一种方法：暴力破解法
      * 老方法，暴力一时爽，一直暴力一直爽，不过这次因为时间限制未通过检验
      */
-    public static String longestPalindrome_01(String s) {
+    private static String longestPalindrome_01(String s) {
         if ("".equals(s.trim())) {
             return s;
         }
@@ -57,7 +57,7 @@ public class LongestPalindromes {
      * 第二种方法：暴力不可取，就原字符串直接对比
      * 还是会超时，不过取巧的方式通过，执行了612ms
      */
-    public static String longestPalindrome_02(String s) {
+    private static String longestPalindrome_02(String s) {
         if ("".equals(s.trim())) {
             return s;
         }
@@ -89,7 +89,7 @@ public class LongestPalindromes {
      * 第一种方式：查看未倒置子串末尾字符和首字符是否相等，花费168ms，时间复杂度和空间复杂度都是 O(n^2)
      * 第二种方式：空间复杂度为O(n)，因为循环到第三列的时候(i=3)，第一列的数据已经不需要用了，只需要arr[i - 1][j - 1]的数据，所以可以改成一维数组
      */
-    public static String longestPalindrome_03_01(String s) {
+    private static String longestPalindrome_03_01(String s) {
         if ("".equals(s) || s.length() <= 1) {
             return s;
         }
@@ -123,7 +123,7 @@ public class LongestPalindromes {
         return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
     }
 
-    public static String longestPalindrome_03_02(String s) {
+    private static String longestPalindrome_03_02(String s) {
         if ("".equals(s) || s.length() <= 1) {
             return s;
         }
@@ -165,7 +165,7 @@ public class LongestPalindromes {
      * 第四种方法：暴力破解优化，用到了动态规划，耗时1078ms
      * 这个类似于构建二维坐标，利用查找最长线段获得长度，用空间换区时间
      */
-    public static String longestPalindrome_04(String s) {
+    private static String longestPalindrome_04(String s) {
         int strLen = s.length();
 
         // 构造一个长宽为字符串长度的正方表格，二维
@@ -196,7 +196,7 @@ public class LongestPalindromes {
      * 第四种方法：暴力破解优化，用到了动态规划，优化空间复杂度，耗时137ms
      * 只需要前一列的数据
      */
-    public static String longestPalindrome_05(String s) {
+    private static String longestPalindrome_05(String s) {
         int strLen = s.length();
         String res = "";
         boolean[][] dp = new boolean[strLen][strLen];
@@ -218,7 +218,7 @@ public class LongestPalindromes {
      * 回文串是对称的，循环选择一个中心，然后往左右遍历，考虑到奇偶的情况，所以会有n+n-1个中心
      * 这其实就是另一种暴力循环，选定中心往左右延伸获取长度，主要这个奇偶情况的处理需要考虑
      */
-    public static String longestPalindrome_06(String s) {
+    private static String longestPalindrome_06(String s) {
         if (s == null || s.length() < 1) {
             return "";
         }
@@ -250,7 +250,7 @@ public class LongestPalindromes {
      * 第二步再循环构造回文子串长度数组，通过中心拓展的方式获取其长度
      * 第三步则确定最长的回文子串长度并计算原字符串的做坐标
      */
-    public static String longestPalindrome_07(String s) {
+    private static String longestPalindrome_07(String s) {
         // 1. 第一步：为字符串中间和首尾添加上特殊字符，改造为奇数的字符串
         String addStr = preProcess(s);
 
@@ -298,7 +298,7 @@ public class LongestPalindromes {
     /**
      * 前期处理，在字符之间和字符串首尾添加特殊字符
      */
-    public static String preProcess(String s) {
+    private static String preProcess(String s) {
         if (s == null) {
             return "^$";
         }

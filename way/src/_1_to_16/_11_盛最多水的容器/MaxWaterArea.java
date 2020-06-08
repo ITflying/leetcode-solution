@@ -28,7 +28,7 @@ public class MaxWaterArea {
      * 第一种方法：暴力破解
      * 耗时657ms，时间复杂度为O(n^2)
      */
-    public static int maxArea_01(int[] height) {
+    private static int maxArea_01(int[] height) {
         int max = 0, width = 0, realHeight = 0;
         for (int x1 = 0; x1 < height.length; x1++) {
             for (int x2 = x1 + 1; x2 < height.length; x2++) {
@@ -51,7 +51,7 @@ public class MaxWaterArea {
      * 2、 如果左边高度小于右边，则往右移动；右边高度高于左边，则往左移动
      * 时间复杂度为O(n)
      */
-    public static int maxArea_02(int[] height) {
+    private static int maxArea_02(int[] height) {
         int maxArea = 0, l = 0, r = height.length - 1;
         while (l < r) {
             maxArea = Math.max(maxArea, Math.min(height[l], height[r]) * (r - l));
@@ -65,7 +65,7 @@ public class MaxWaterArea {
         return maxArea;
     }
 
-    public static int maxArea_02_01(int[] height) {
+    private static int maxArea_02_01(int[] height) {
         int i = 0, j = height.length - 1, res = 0;
         while (i < j) {
             res = height[i] < height[j] ?
