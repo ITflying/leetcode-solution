@@ -1,8 +1,5 @@
 package _17_to_32._22_括号生成;
 
-import Common.CheckUtil;
-import Common.ListNode;
-
 import java.rmi.ServerException;
 import java.util.*;
 

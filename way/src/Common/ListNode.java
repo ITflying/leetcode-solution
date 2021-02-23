@@ -31,5 +31,6 @@ public class ListNode {
             System.out.print(temp.val + "\t");
             temp = temp.next;
         }
+        System.out.println("");
     }
 }
