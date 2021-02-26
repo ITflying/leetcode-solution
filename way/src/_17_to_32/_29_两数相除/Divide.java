@@ -2,6 +2,8 @@ package _17_to_32._29_两数相除;
 
 
 import java.rmi.ServerException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,18 +32,123 @@ import java.util.Objects;
  **/
 public class Divide {
     public static void main(String[] args) throws ServerException {
-        int dividend = 10;
-        int divisor = 3;
+        int dividend = 1100540749;
+        int divisor = -1090366779;
         System.out.println(dividend + "/" + divisor + "=" + divide_01(dividend, divisor));
     }
 
     /**
-     * 除法，不能使用乘除取余，就限定在数字本身上面，那么二进制移位可以替代乘除
-     * 但边界条件和一些处理做不出来，回去再想想
+     * 移位想不出怎么做，那就暴力循环加法
+     * 超过时间限制，但通过了所有测试用例
      */
     private static int divide_01(int dividend, int divisor) {
-        // todo
-        return -1;
+        if (divisor == 1 || divisor == -1) {
+            if (dividend == Integer.MIN_VALUE && divisor == -1){
+                return Integer.MAX_VALUE;
+            }
+            return divisor * dividend;
+        }
+        int ntDividend = dividend > 0 ? -dividend : dividend;
+        int ntDivisor = divisor > 0 ? -divisor : divisor;
+        if (ntDividend > ntDivisor) {
+            return 0;
+        }
+
+        int flag = (dividend < 0 && divisor < 0) || (dividend > 0 && divisor > 0) ? 1 : -1;
+        int sum = 0, times = 0;
+        int pre = 0;
+        while (true) {
+            sum += ntDivisor;
+            times++;
+
+            // 处理越界
+            if (times == Integer.MIN_VALUE) {
+                if (flag == 1) {
+                    return Integer.MAX_VALUE;
+                } else {
+                    return Integer.MIN_VALUE;
+                }
+            }
+            if (sum > 0) {
+                return flag * (times - 1);
+            }
+
+            if (sum == ntDividend) {
+                return flag * times;
+            } else if (sum < ntDividend) {
+                break;
+            }
+            pre = sum;
+        }
+
+        if (pre - dividend > sum - dividend
+                || (sum < 0 && dividend > 0 && sum - dividend > 0) || (sum > 0 && dividend < 0 && sum - dividend < 0)) {
+            return flag * (times - 1);
+        } else {
+            return flag * times;
+        }
+    }
+
+    /**
+     * 利用  16 * 13 = 16 * (8 + 4 +  1 + 0) 的思路来遍历获取结果
+     * div配合二分查找+递归迅速定位到结果
+     * https://leetcode-cn.com/problems/divide-two-integers/solution/shi-yong-wei-yi-cao-zuo-qiu-jie-by-johnh/
+     */
+    private static int divide_02(int dividend, int divisor) {
+        // 1、先转化为负数来处理越界问题
+        int ntDividend = dividend > 0 ? -dividend : dividend;
+        int ntDivisor = divisor > 0 ? -divisor : divisor;
+        if (ntDividend > ntDivisor) {
+            return 0;
+        }
+
+        // 2、循环遍历获取结果数组
+        List<Integer> resList = new ArrayList<>();
+        div(ntDividend, ntDivisor, resList);
+
+        // 3、获取结果
+        int res = 0;
+        int symbol = (dividend ^ divisor) >> 31 == 0 ? 1 : -1;
+        for (Integer tempRes : resList) {
+            if (tempRes == 31) {
+                if (symbol == 1) {
+                    return Integer.MAX_VALUE;
+                }
+                return Integer.MIN_VALUE;
+            }
+            res += (1 << tempRes);
+        }
+        return symbol * res;
+    }
+
+    private static void div(int ntDividend, int ntDivisor, List<Integer> resList) {
+        if (ntDividend > ntDivisor) {
+            return;
+        }
+
+        // 二分查找
+        int left = 0, right = 32;
+        while (left + 1 != right) {
+            int mid = (left + right) >> 1;
+
+            // 判断是否直接设置右节点为中间位置，如果中间值都大于被除数，所以要更小一点负数
+            int midVal = (-1 << (31 - mid));
+            if (ntDivisor < midVal) {
+                right = mid;
+                continue;
+            }
+
+            // 逼近结果
+            int tempVal = ntDivisor << mid;
+            if (tempVal < ntDividend) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+        resList.add(left);
+        int newDividen = ntDividend - (ntDivisor << left);
+        div(newDividen, ntDivisor, resList);
     }
 
 }
