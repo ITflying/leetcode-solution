@@ -1,9 +1,6 @@
-package _33_to_38._34_排序数组中查找元素位置;
+package _33_to_48._34_排序数组中查找元素位置;
 
 import java.rmi.ServerException;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。

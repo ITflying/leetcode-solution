@@ -1,4 +1,4 @@
-package _33_to_38._36_有效的数独;
+package _33_to_48._36_有效的数独;
 
 import java.rmi.ServerException;
 import java.util.HashMap;
