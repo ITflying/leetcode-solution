@@ -1,4 +1,4 @@
-package _33_to_48._40_组合总和2;
+package _33_to_48._41_缺失的第一个正数;
 
 import java.rmi.ServerException;
 import java.util.*;
@@ -34,7 +34,7 @@ import java.util.*;
  *
  * @date 2021/03/29
  **/
-public class CombinationSum2 {
+public class FirstMissingPositive {
     public static void main(String[] args) throws ServerException {
         int[] candiadates = new int[]{2, 3, 6, 7};
         int target = 7;
