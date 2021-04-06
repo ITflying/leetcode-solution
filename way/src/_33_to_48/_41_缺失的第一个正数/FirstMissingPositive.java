@@ -2,90 +2,80 @@ package _33_to_48._41_缺失的第一个正数;
 
 import java.rmi.ServerException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
- * 给定一个数组candidates和一个目标数target，找出candidates中所有可以使数字和为target的组合。
- * candidates中的每个数字在每个组合中只能使用[一次]。
- * <p>
- * 说明：
- * 所有数字（包括目标数）都是正整数。
- * 解集不能包含重复的组合。
- * <p>
- * 示例1:
- * 输入: candidates =[10,1,2,7,6,1,5], target =8,
- * 所求解集为:
- * [
- * [1, 7],
- * [1, 2, 5],
- * [2, 6],
- * [1, 1, 6]
- * ]
- * 示例2:
- * 输入: candidates =[2,5,2,1,2], target =5,
- * 所求解集为:
- * [
- * [1,2,2],
- * [5]
- * ]
- * <p>
+ * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+ * 
+ * 进阶：你可以实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案吗？
+ * 
+ * 示例 1：
+ * 输入：nums = [1,2,0]
+ * 输出：3
+ * 示例 2：
+ * 输入：nums = [3,4,-1,1]
+ * 输出：2
+ * 示例 3：
+ * 输入：nums = [7,8,9,11,12]
+ * 输出：1
+ * 
+ * 提示：
+ * 0 <= nums.length <= 300
+ * -231 <= ums[ni] <= 231 - 1
+ * 
  * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/combination-sum-ii
+ * 链接：https://leetcode-cn.com/problems/first-missing-positive
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
- * @date 2021/03/29
+ * @date 2021/04/02
  **/
 public class FirstMissingPositive {
     public static void main(String[] args) throws ServerException {
-        int[] candiadates = new int[]{2, 3, 6, 7};
-        int target = 7;
-        System.out.println(combinationSum2_01(candiadates, target));
+        int[] candiadates = new int[]{1, 2, 0};
+        System.out.println(firstMissingPositive_02(candiadates));
     }
 
     /**
-     *
+     * 迭代
+     * 这是n^2的时间复杂度, for和contains
      */
-    private static List<List<Integer>> combinationSum2_01(int[] candidates, int target) {
-        // TODO: 2021/4/1 waiting for self solution
-        return null;
+    private static int firstMissingPositive_01(int[] nums) {
+        int max = Integer.MAX_VALUE;
+        List<Integer> temp = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        for (int i = 1; i < max; i++) {
+            if (!temp.contains(i)) {
+                return i;
+            }
+        }
+        return 1;
     }
+
 
     /**
-     * 易碎版本
+     * 哈希
      */
-    private static List<List<Integer>> combinationSum2_02(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-        Deque<Integer> path = new LinkedList<>();
+    private static int firstMissingPositive_02(int[] nums) {
+        int len = nums.length;
 
-        // 排序方便剪枝
-        Arrays.sort(candidates);
-
-        // 剪枝回溯
-        dfs_02(res, path, candidates, 0, target);
-        return res;
-    }
-
-    private static void dfs_02(List<List<Integer>> res, Deque<Integer> path, int[] nums, int index, int target) {
-        // 如果符合条件返回
-        if (target == 0) {
-            res.add(new ArrayList<>(path));
-            return;
+        for (int i = 0; i < len; i++) {
+            if (nums[i] <= 0) {
+                nums[i] = len + 1;
+            }
         }
-        // 超过限制
-        if (index >= nums.length) return;
-        // 可用的长度
-        List<Integer> pre = new ArrayList<>(nums.length);
-        // 遍历决定每一个位置的数字的值
-        for (int i = index; i < nums.length; i++) {
-            if (pre.contains(nums[i])) continue;
-            // 剪枝，快速失败机制
-            if (target - nums[i] < 0) break;
-            // 增加数据
-            path.addLast(nums[i]);
-            pre.add(nums[i]);
-            // 递归下一个数字
-            dfs_02(res, path, nums, i + 1, target - nums[i]);
-            path.removeLast();
+
+        for (int i = 0; i < len; i++) {
+            int num = Math.abs(nums[i]);
+            if (num <= len) {
+                nums[num - 1] = -Math.abs(nums[num - 1]);
+            }
         }
+
+        for (int i = 0; i < len; i++) {
+            if (nums[i] > 0) {
+                return i + 1;
+            }
+        }
+        return len + 1;
     }
 
 
